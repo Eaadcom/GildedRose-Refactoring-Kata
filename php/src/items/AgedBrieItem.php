@@ -15,22 +15,12 @@ class AgedBrieItem extends Item implements UpdateableInterface
         parent::__construct($name, $sellIn, $quality);
     }
 
-    public function update() : void{
+    public function update(): void
+    {
         $this->sellIn--;
 
-        if ($this->quality == 50){
-            return;
-        }
-        
-        if ($this->quality == 49){
-            $this->quality = 50;
-            return;
-        }
+        $increase = $this->sellIn < 0 ? 2 : 1;
 
-        if ($this->sellIn < 0){
-            $this->quality += 2;
-        } else {
-            $this->quality++;
-        }
+        $this->quality = min(50, $this->quality + $increase);
     }
 }

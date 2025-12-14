@@ -21,15 +21,13 @@ class BackstagePassesItem extends Item implements UpdateableInterface
 
         if ($this->sellIn < 0) {
             $this->quality = 0;
-            return;
-        }
-
-        if ($this->sellIn > 10) {
-            $this->quality++;
-        } else if (10 >= $this->sellIn && $this->sellIn > 5) {
-            $this->quality += 2;
-        } else if (5 >= $this->sellIn && $this->sellIn >= 0) {
-            $this->quality += 3;
+        } else {
+            $increase = match (true) {
+                $this->sellIn < 5 => 3,
+                $this->sellIn < 10 => 2,
+                default => 1
+            };
+            $this->quality = min(50, $this->quality + $increase);
         }
     }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests;
 
 use GildedRose\GildedRose;
-use GildedRose\Item;
+use GildedRose\items\RegularItem;
 use PHPUnit\Framework\TestCase;
 use ApprovalTests\Approvals;
 
@@ -23,7 +23,7 @@ class ApprovalTest extends TestCase
 
     public function testFoo(): void
     {
-        $items = [new Item('foo', 0, 0)];
+        $items = [new RegularItem('foo', 0, 0)];
         $app = new GildedRose($items);
         $app->updateQuality();
 

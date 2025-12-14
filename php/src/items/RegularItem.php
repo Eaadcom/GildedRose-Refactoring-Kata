@@ -18,19 +18,12 @@ class RegularItem extends Item implements UpdateableInterface
     public function update() : void{
         $this->sellIn--;
 
-        if ($this->quality == 0){
-            return;
-        }
+        $degradationAmount = 1;
 
         if ($this->sellIn < 0){
-            if ($this->quality <= 2){
-                $this->quality = 0;
-                return;
-            }
-
-            $this->quality -= 2;
-        } else {
-            $this->quality--;
+            $degradationAmount = 2;
         }
+
+        $this->quality = max(0, $this->quality - $degradationAmount);
     }
 }

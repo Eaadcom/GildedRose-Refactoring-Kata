@@ -18,23 +18,12 @@ class ConjuredItem extends Item implements UpdateableInterface
     public function update() : void{
         $this->sellIn--;
 
-        if ($this->quality == 0){
-            return;
-        }
-
-        if ($this->sellIn < 0 && $this->quality < 5){
-            $this->quality = 0;
-            return;
-        }
-        if ($this->sellIn >= 0 && $this->quality < 3){
-            $this->quality = 0;
-            return;
-        }
+        $degradationAmount = 2;
 
         if ($this->sellIn < 0){
-            $this->quality -= 4;
-        } else {
-            $this->quality -= 2;
+            $degradationAmount = 4;
         }
+
+        $this->quality = max(0, $this->quality - $degradationAmount);
     }
 }

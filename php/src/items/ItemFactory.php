@@ -13,6 +13,8 @@ class ItemFactory
     public static function createItem(string $name, int $sellIn, int $quality): Item
     {
         return match (true) {
+            //AgedBrie
+            //[var]Item($name, )
             $name == "Aged Brie" => new AgedBrieItem($name, $sellIn, $quality),
             $name == "Sulfuras, Hand of Ragnaros" => new SulfurasItem($name),
             str_contains(strtolower($name), "conjured") =>
