@@ -3,50 +3,50 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use GildedRose\items\AgedBrieItem;
+use GildedRose\items\ConjuredItem;
 use PHPUnit\Framework\TestCase;
 use GildedRose\items\ItemFactory;
 
-class AgedBrieItemTest extends TestCase
+class ConjuredItemTest extends TestCase
 {
 
     /**
-     * @dataProvider agedBrieDataProvider
+     * @dataProvider conjuredItemDataProvider
      */
     public function testAgedBrieUpdate(int $initialSellIn, int $initialQuality, int $expectedSellIn, int $expectedQuality): void
     {
-        $item = new AgedBrieItem('Aged Brie', $initialSellIn, $initialQuality);
+        $item = new ConjuredItem('Conjured cheese', $initialSellIn, $initialQuality);
         $item->update();
         
         $this->assertSame($expectedQuality, $item->quality);
         $this->assertSame($expectedSellIn, $item->sellIn);
     }
 
-    public function agedBrieDataProvider(): array{
+    public function conjuredItemDataProvider(): array{
         return [
             'sellIn is positive' => [
                 'initialSellIn' => 2,
-                'initialQuality' => 0,
+                'initialQuality' => 15,
                 'expectedSellIn' => 1,
-                'expectedQuality' => 1,
+                'expectedQuality' => 13,
             ],
             'sellIn is negative' => [
                 'initialSellIn' => -5,
-                'initialQuality' => 3,
+                'initialQuality' => 10,
                 'expectedSellIn' => -6,
-                'expectedQuality' => 5,
+                'expectedQuality' => 6,
             ],
-            'quality at 50, should stay at 50' => [
+            'quality at 0, should stay at 0' => [
                 'initialSellIn' => -5,
-                'initialQuality' => 50,
+                'initialQuality' => 0,
                 'expectedSellIn' => -6,
-                'expectedQuality' => 50,
+                'expectedQuality' => 0,
             ],
-            'quality at 49, should cap at 50' => [
+            'quality at 1, should cap at 0' => [
                 'initialSellIn' => -1,
-                'initialQuality' => 49,
+                'initialQuality' => 1,
                 'expectedSellIn' => -2,
-                'expectedQuality' => 50,
+                'expectedQuality' => 0,
             ],
         ];
     }

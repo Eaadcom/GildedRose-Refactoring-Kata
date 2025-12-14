@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "GildedRose\\": "src/"
+            "GildedRose\\": ["src/", "src/items/"]
         }
     },
     "autoload-dev": {

@@ -5,7 +5,7 @@ namespace GildedRose\items;
 use GildedRose\items\UpdateableInterface;
 use GildedRose\Item;
 
-class AgedBrieItem extends Item implements UpdateableInterface
+class RegularItem extends Item implements UpdateableInterface
 {
     public function __construct(
         public string $name,
@@ -18,19 +18,19 @@ class AgedBrieItem extends Item implements UpdateableInterface
     public function update() : void{
         $this->sellIn--;
 
-        if ($this->quality == 50){
-            return;
-        }
-        
-        if ($this->quality == 49){
-            $this->quality = 50;
+        if ($this->quality == 0){
             return;
         }
 
         if ($this->sellIn < 0){
-            $this->quality += 2;
+            if ($this->quality <= 2){
+                $this->quality = 0;
+                return;
+            }
+
+            $this->quality -= 2;
         } else {
-            $this->quality++;
+            $this->quality--;
         }
     }
 }
