@@ -4,8 +4,8 @@ I rewrote this README to document my approach to this Kata (PHP).
 
 # Steps taken
 
-1. I checked the requirements and fixed the broken test.
-2. I made sure the approval tests worked, the testThirtyDays test was very useful during this exercise. Was unsure if the Aged Brie was being updated as intended but decided to keep the original behavior.
+1. Checked the requirements and fixed the broken test.
+2. Made sure the approval tests worked, the testThirtyDays test was very useful during this exercise. Was unsure if the Aged Brie was being updated as intended but decided to keep the original behavior.
 3. Decided on a better eventual structure for the program based off of the requirements, created a specific folder for subclasses of Item.
 4. Created AgedBrieItem, ItemFactory & UpdateableInterface.
 5. First I made sure my AgedBrieItem worked, I wrote some extra tests in conjunciton with writing this class to make sure it worked as intended per the requirements.
