@@ -22,24 +22,24 @@ final class GildedRose
                 if ($item->quality > 0) {
                     if ($item->name != 'Sulfuras, Hand of Ragnaros') {
                         // Reduce Item quality by 1 of Regular Items
-                        $item->quality = $item->quality - 1;
+                        $item->quality--;
                     }
                 }
             } else {
                 if ($item->quality < 50) {
                     // Add Item quality to Aged Brie & Backstage passes
-                    $item->quality = $item->quality + 1;
+                    $item->quality++;
                     if ($item->name == 'Backstage passes to a TAFKAL80ETC concert') {
                         if ($item->sellIn < 11) {
                             // Backstage passes `Quality` increases by `2` when there are `10` days or less
                             if ($item->quality < 50) {
-                                $item->quality = $item->quality + 1;
+                                $item->quality++;
                             }
                         }
                         if ($item->sellIn < 6) {
                             // Backstage passes `Quality` increases by `3` when there are `5` days or less
                             if ($item->quality < 50) {
-                                $item->quality = $item->quality + 1;
+                                $item->quality++;
                             }
                         }
                     }
@@ -48,7 +48,7 @@ final class GildedRose
 
             // Reduces sellIn for all items except for Sulfuras
             if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                $item->sellIn = $item->sellIn - 1;
+                $item->sellIn--;
             }
 
             // Reduces quality of an item by an additional point when sellIn is negative
@@ -57,17 +57,17 @@ final class GildedRose
                     if ($item->name != 'Backstage passes to a TAFKAL80ETC concert') {
                         if ($item->quality > 0) {
                             if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                                $item->quality = $item->quality - 1;
+                                $item->quality--;
                             }
                         }
                     } else {
                         // Sets item quality to 0
-                        $item->quality = $item->quality - $item->quality;
+                        $item->quality = 0;
                     }
                 } else {
                     // Increases Aged brie by an extra point when sellIn is negative
                     if ($item->quality < 50) {
-                        $item->quality = $item->quality + 1;
+                        $item->quality++;
                     }
                 }
             }
